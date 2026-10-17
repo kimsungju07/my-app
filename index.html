@@ -1,11 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>김성주 | Full-Stack Developer</title>
+    <meta name="description" content="프롬프트 엔지니어링과 백엔드를 다루는 풀스택 개발자 김성주의 프로필" />
+
+    <!-- 외부 CSS: Pretendard 폰트, JetBrains Mono (코드용) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- 깜빡임 방지: 저장된 테마를 렌더링 전에 적용 -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t) document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
   <body>
-    <h1>Hello, world!</h1>
-    <p>This is a simple paragraph.</p>
-    <p>This is another simple paragraph.</p>
-    <ul>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <header class="header" id="header">
+      <div class="container header__inner">
+        <a href="#home" class="logo">&lt;<span data-bind="nameEn"></span> /&gt;</a>
+
+        <nav class="nav" id="nav" aria-label="주요 메뉴">
+          <a href="#about" class="nav__link">About</a>
+          <a href="#skills" class="nav__link">Skills</a>
+          <a href="#projects" class="nav__link">Projects</a>
+          <a href="#contact" class="nav__link">Contact</a>
+        </nav>
+
+        <div class="header__actions">
+          <button class="icon-btn" id="themeToggle" aria-label="테마 전환">
+            <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+          </button>
+          <button class="icon-btn menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="home">
+        <div class="container hero__inner">
+          <div class="hero__text">
+            <p class="hero__hello">안녕하세요, 저는</p>
+            <h1 class="hero__name" data-bind="name"></h1>
+            <p class="hero__role">
+              <span class="typing" id="typing"></span><span class="caret">|</span>
+            </p>
+            <p class="hero__summary" data-bind="summary"></p>
+            <div class="hero__cta">
+              <a href="#projects" class="btn btn--primary">프로젝트 보기</a>
+              <a href="#contact" class="btn btn--ghost">연락하기</a>
+            </div>
+          </div>
+
+          <!-- 프롬프트 + 백엔드 컨셉의 터미널 -->
+          <div class="terminal" aria-hidden="true">
+            <div class="terminal__bar">
+              <i></i><i></i><i></i>
+              <span>~/profile — zsh</span>
+            </div>
+            <pre class="terminal__body" id="terminal"></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="container">
+          <h2 class="section__title reveal"><span>01.</span> About Me</h2>
+          <div class="about reveal">
+            <div class="about__text" id="aboutText"></div>
+            <ul class="about__facts" id="aboutFacts"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section section--alt" id="skills">
+        <div class="container">
+          <h2 class="section__title reveal"><span>02.</span> Skills</h2>
+          <div class="skills" id="skills-grid"></div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="section" id="projects">
+        <div class="container">
+          <h2 class="section__title reveal"><span>03.</span> Projects</h2>
+          <div class="filters reveal" id="filters" role="tablist"></div>
+          <div class="projects" id="projects-grid"></div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section section--alt" id="contact">
+        <div class="container contact">
+          <h2 class="section__title reveal"><span>04.</span> Contact</h2>
+          <p class="contact__lead reveal">새로운 기회, 협업 제안, 혹은 가벼운 대화도 환영합니다.</p>
+
+          <div class="contact__grid reveal">
+            <div class="contact__info">
+              <button class="copy-card" id="copyEmail" type="button">
+                <span class="copy-card__label">Email</span>
+                <span class="copy-card__value" data-bind="email"></span>
+                <span class="copy-card__hint">클릭해서 복사</span>
+              </button>
+              <ul class="socials" id="socials"></ul>
+            </div>
+
+            <form class="form" id="contactForm" novalidate>
+              <label>
+                이름
+                <input type="text" name="name" required placeholder="홍길동" />
+              </label>
+              <label>
+                이메일
+                <input type="email" name="email" required placeholder="you@example.com" />
+              </label>
+              <label>
+                메시지
+                <textarea name="message" rows="5" required placeholder="하고 싶은 이야기를 남겨주세요"></textarea>
+              </label>
+              <p class="form__error" id="formError" role="alert"></p>
+              <button class="btn btn--primary" type="submit">메일 보내기</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> <span data-bind="name"></span>. Built with Vanilla JS.</p>
+      </div>
+    </footer>
+
+    <button class="to-top" id="toTop" aria-label="맨 위로">↑</button>
+    <div class="toast" id="toast" role="status"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
