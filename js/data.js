@@ -3,6 +3,7 @@ const PROFILE = {
   name: "김성주",
   nameEn: "SungJu",
   email: "your-email@example.com",
+  website: "https://my-app-gamma-kohl-61.vercel.app/",
   roles: ["Full-Stack Developer", "Backend Engineer", "Prompt Engineer"],
   summary:
     "LLM 프롬프트 설계부터 API·데이터베이스·프론트엔드까지, 아이디어를 실제로 동작하는 서비스로 만드는 풀스택 개발자입니다.",
@@ -56,11 +57,12 @@ const PROFILE = {
       desc: "라이브러리 없이 바닐라 JS로 만든 반응형 프로필 사이트. 다크 모드와 스크롤 애니메이션 지원.",
       stack: ["HTML", "CSS", "Vanilla JS"],
       github: "#",
-      demo: "#",
+      demo: "https://my-app-gamma-kohl-61.vercel.app/",
     },
   ],
 
   socials: [
+    { label: "Homepage", url: "https://my-app-gamma-kohl-61.vercel.app/" },
     { label: "GitHub", url: "https://github.com/" },
     { label: "Blog", url: "#" },
     { label: "LinkedIn", url: "#" },
